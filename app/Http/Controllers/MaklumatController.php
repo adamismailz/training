@@ -12,10 +12,7 @@ class MaklumatController extends Controller
     {
         //cara nak save
         //
-        // $maklumat = new Maklumat;
-        // $maklumat->nama = request()->nama;
-        // $maklumat->desc = request()->desc;
-        // $maklumat->save(); 
+        
 
 
         //validation
@@ -25,7 +22,12 @@ class MaklumatController extends Controller
             'desc'=> 'required',
         ]);
         
-         Maklumat::create(request()->all());
+        $maklumat = new Maklumat;
+        $maklumat->fill(request()->all());
+        $maklumat->user_id = auth()->user()->id;
+        $maklumat->save(); 
+
+        //  Maklumat::create(request()->all());
 
          return redirect ('maklumat/pegawai');
     }

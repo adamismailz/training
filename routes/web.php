@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaklumatController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,16 @@ use App\Http\Controllers\MaklumatController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login-attempt', [LoginController::class, 'loginAttempt'])->name('login.attempt');
+Route::get('/login-logout', [LoginController::class, 'logout'])->name('login.logout');
+
+
+Route::get('/errors/unauthorized', function () {
+    return view('errors.unauthorized');
+})->name('errors.unauthorized');
 
 Route::get('/about', function () {
     return response()->download(public_path('test.txt'));

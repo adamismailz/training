@@ -10,4 +10,8 @@ class Maklumat extends Model
     use HasFactory;
 
     protected $fillable = ['nama' , 'desc'];
+
+    public function User(){
+        return $this->belongsTo(User::class);
+    }
 }
