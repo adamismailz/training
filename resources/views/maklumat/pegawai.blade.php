@@ -1,13 +1,15 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="container">
    <h1>List</h1>
+   <a class="btn btn-success" href="{{route('maklumat.pelanggan')}}"> Add </a>
 
    @foreach ($maklumats as $maklumat )
    <div class="card" >
   <p> {{ $maklumat->nama }}</p>
   <p> {{ $maklumat->desc }}</p>
-   </div>
+   
   
     <a class="btn btn-primary" href="{{route('maklumat.pelanggan.edit' , ['id' => $maklumat->id])}}"> Update </a>
    
@@ -17,5 +19,9 @@
 @csrf
 <button class="btn btn-danger" type="submit"> Padam </button>
 </form>
-   @endforeach
+
+@endforeach
+</div>
+</div>
+
 @endsection

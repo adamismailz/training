@@ -34,7 +34,7 @@ Route::name('maklumat')->prefix('maklumat')->group(function () {
     Route::post('/pelanggan', [MaklumatController::class, 'store'])->name('.pelanggan.store');
     Route::get('/pegawai', [MaklumatController::class, 'showPegawai'])->name('.pegawai');
     Route::delete('/padam/{id}', [MaklumatController::class, 'padamPelanggan'])->name('.pelanggan.padam');
-    Route::get('/pelangganUpdate/{id}', [MaklumatController::class, 'editPelanggan'])->name('.pelanggan.edit');
+    Route::get('/pelangganUpdate/{id}', [MaklumatController::class, 'editPelanggan'])->name('.pelanggan.edit')->middleware('test');
     Route::patch('/pelanggan/update/{id}', [MaklumatController::class, 'updatePelanggan'])->name('.pelanggan.update');
 
 
