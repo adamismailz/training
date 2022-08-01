@@ -10,7 +10,7 @@
       <form action="{{ route('maklumat.pelanggan.store') }}" method="POST">
         @csrf
         <div class="mb-5">
-          <label for="inputName" class="form-label">Name</label>
+          <label for="inputName" class="form-label">Name :</label>
           <input type="text" class="form-control" id="nama" name="nama" value="{{old('nama')}}">
           @error('nama')
           <div class="alert alert-danger">
@@ -19,7 +19,7 @@
           @enderror
         </div>
         <div class="mb-3">
-          <label for="inputDesc" class="form-label">Desc</label>
+          <label for="inputDesc" class="form-label">Desc :</label>
           <input type="text" class="form-control" id="desc" name="desc" value="{{old('desc')}}">
           @error('desc')
           <div class="alert alert-danger">
