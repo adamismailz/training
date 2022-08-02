@@ -8,8 +8,9 @@ use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
-    public function getAllPost(){
-        $maklumats = Maklumat::all();
+    public function getAllPost()
+    {
+        $maklumats = Maklumat::paginate();
 
         return response()->json([
             'message' => 'All Maklumat is here',
