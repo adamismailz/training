@@ -96,4 +96,11 @@ class MaklumatController extends Controller
         return json_decode($currencyResponse);
     }
 
+    public function currency()
+    {
+        $currencyResponse = $this->getfromAPI();
+        return view ('maklumat.currency' , ['currencyResponse'=> $currencyResponse->data]);
+    }
+    
+
 }

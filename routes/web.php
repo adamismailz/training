@@ -46,6 +46,8 @@ Route::middleware('auth')->name('maklumat')->prefix('maklumat')->group(function 
     Route::delete('/padam/{id}', [MaklumatController::class, 'padamPelanggan'])->name('.pelanggan.padam');
     Route::get('/pelangganUpdate/{id}', [MaklumatController::class, 'editPelanggan'])->name('.pelanggan.edit')->middleware('test');
     Route::patch('/pelanggan/update/{id}', [MaklumatController::class, 'updatePelanggan'])->name('.pelanggan.update');
+    Route::get('/currency', [MaklumatController::class, 'currency'])->name('.currency');
+
 
 
 
