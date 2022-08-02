@@ -10,7 +10,7 @@
     <input type="text" class="form-control" id="email" name="email" >
     <label for="inputName" class="form-label">Password :</label>
           <input type="password" class="form-control" id="password" name="password">
-
+<br>
           <button type="submit" class="btn btn-primary">Login</button>
 
 </form>   

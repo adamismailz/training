@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Maklumat;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailCreated;
 
 class MaklumatController extends Controller
 {
@@ -39,8 +40,9 @@ class MaklumatController extends Controller
 
     public function showPegawai()
     {
-        $maklumats = Maklumat::orderBy('created_at' , 'desc')->get(); 
-        return view ('maklumat.pegawai' , ['maklumats'=> $maklumats]);
+        $currencyResponse = $this->getfromAPI();
+        $maklumats = Maklumat::with('user')->orderBy('created_at' , 'desc')->paginate(5); 
+        return view ('maklumat.pegawai' , ['maklumats'=> $maklumats,'currencyResponse'=> $currencyResponse->data]);
     }
     
     public function padamPelanggan($id)
@@ -67,7 +69,31 @@ class MaklumatController extends Controller
 
       Maklumat::create(request()->all());
 
+      Mail::to('test@mail.com')->send(new MailCreated);
+
       return redirect ()->route('maklumat.pegawai');
+    }
+
+    public function getHttpHeaders(){
+        $headers = [
+            'headers' =>[
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/vnd.BNM.API.v1+json'
+            ],
+            'http-errors' => false,
+        ];
+        return $headers;
+    }
+
+    public function getfromAPI(){
+
+        $client = new \GuzzleHttp\Client(self::getHttpHeaders());
+
+        $res = $client->request('GET', 'https://api.bnm.gov.my/public/exchange-rate');
+
+        $currencyResponse = $res->getBody()->getContents();
+
+        return json_decode($currencyResponse);
     }
 
 }

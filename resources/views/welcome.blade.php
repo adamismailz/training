@@ -5,9 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+        @auth
         <a href="{{route('login.logout')}}">Logout</a>
+        <a href="{{route('maklumat.pegawai')}}">Add Maklumat</a>
+        @endauth
 
+        @guest
+        <a href="{{route('login')}}">Login</a>
 
+        @endguest
+
+        
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">

@@ -38,7 +38,7 @@ Route::get('/dashboard', function () {
 });
 
 
-Route::name('maklumat')->prefix('maklumat')->group(function () {
+Route::middleware('auth')->name('maklumat')->prefix('maklumat')->group(function () {
     Route::get('/pelanggan', [MaklumatController::class, 'showPelanggan'])->name('.pelanggan');
     // Route::get('/pegawai', [MaklumatController::class, 'show'])->name('.pegawai');
     Route::post('/pelanggan', [MaklumatController::class, 'store'])->name('.pelanggan.store');
